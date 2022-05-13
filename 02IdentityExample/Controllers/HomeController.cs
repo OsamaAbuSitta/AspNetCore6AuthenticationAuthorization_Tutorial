@@ -58,8 +58,8 @@ namespace _02IdentityExample.Controllers
 
             var signInResult = await _signInManager.PasswordSignInAsync(user, password, isPersistent: false, lockoutOnFailure:false);
 
-            
-
+            if(signInResult.Succeeded)
+                return RedirectToAction("Index");
 
             return View();
         }
@@ -84,5 +84,13 @@ namespace _02IdentityExample.Controllers
 
             return View();
         }
-    }
+
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Idenx");
+        }
+
+    }   
 }

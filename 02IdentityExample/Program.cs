@@ -11,8 +11,16 @@ services.AddDbContext<ApplicationDbContext>(options=> {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
 
-services.AddIdentity<IdentityUser,IdentityRole>()
-        // Add bredge 
+services.AddIdentity<IdentityUser,IdentityRole>( configuration=> {
+        configuration.Password.RequireDigit = false;
+        configuration.Password.RequireNonAlphanumeric = false;
+        configuration.Password.RequireUppercase = false;
+        configuration.Password.RequireLowercase = false;
+        configuration.Password.RequireDigit = false;
+        configuration.Password.RequiredUniqueChars = 1;
+        configuration.Password.RequiredLength = 6;
+    })
+    // Add bredge 
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 
@@ -27,11 +35,14 @@ services.AddControllersWithViews();
 //            config.LoginPath = "/Login";
 //        });
 
+//services.AddAuthentication();
+
 services.AddAuthorization();
 
 var app = builder.Build();
 
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
