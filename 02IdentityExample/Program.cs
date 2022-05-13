@@ -24,10 +24,13 @@ services.AddIdentity<IdentityUser,IdentityRole>( configuration=> {
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 
-// 📽️📹 10
+// provided by Identity 
+services.ConfigureApplicationCookie(config =>
+{
+    config.LoginPath = "/Home/Login";
+    config.LogoutPath = "/Home/Logout";
+});
 
-
-services.AddControllersWithViews();
 //services.AddAuthentication("CookieAuth")
 //        .AddCookie("CookieAuth",config=>
 //        {
@@ -35,7 +38,8 @@ services.AddControllersWithViews();
 //            config.LoginPath = "/Login";
 //        });
 
-//services.AddAuthentication();
+services.AddControllersWithViews();
+
 
 services.AddAuthorization();
 

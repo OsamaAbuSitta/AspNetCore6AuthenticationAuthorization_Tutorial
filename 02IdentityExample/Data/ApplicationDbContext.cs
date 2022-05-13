@@ -12,7 +12,15 @@ namespace _02IdentityExample.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):  base(options)
         {
-                
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.RemoveIdentityPrefixTableName();
+        
         }
     }
 }
+
