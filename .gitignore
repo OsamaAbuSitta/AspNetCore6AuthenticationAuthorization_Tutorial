@@ -1,7 +1,7 @@
-.vs/
-ApiOne/
-ApiTwo/
-IdentityServer/
 
+# IDE Folder
+.vs/
+
+# build result 
 bin/
 obj/
