@@ -1,0 +1,7 @@
+.vs/
+ApiOne/
+ApiTwo/
+IdentityServer/
+
+bin/
+obj/
