@@ -50,13 +50,13 @@ namespace _02IdentityExample.Controllers
             if (user == null)
                 throw new Exception();
 
-            var checkPasswordResult = await _userManager.CheckPasswordAsync(user, password);
+            //var checkPasswordResult = await _userManager.CheckPasswordAsync(user, password);
 
-            if (!checkPasswordResult)
-                throw new Exception("Invalid Credintional 💀💀");
+            //if (!checkPasswordResult)
+            //    throw new Exception("Invalid Credintional 💀💀");
 
 
-            await _signInManager.SignInAsync(user, isPersistent: false);
+            var signInResult = await _signInManager.PasswordSignInAsync(user, password, isPersistent: false, lockoutOnFailure:false);
 
             
 
